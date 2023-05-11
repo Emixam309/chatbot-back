@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/dialog/questions', (req, res) => {
-  const questions = dialogs.map(({id, question}) => {id, question})
+  const questions = dialogs.map(({id, question}) => ({id, question}))
   res.json(questions)
 })
 
