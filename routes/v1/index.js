@@ -5,37 +5,34 @@ const dialogController = require('../../controller/v1/index')
 
 const jsonParser = bodyParser.json()
 
+/**
+ * @swagger
+ *
+ * /:
+ *   get:
+ *     summary: Send Hello World
+ *     description: Send Hello World
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
 router.get('/', dialogController.home)
 
-router.get('/test', dialogController.test)
-
 /**
  * @swagger
  *
- * /api/v1/dialog/question:
+ * /dialog/{id}:
  *   get:
  *     tags:
- *       - v1
+ *     - Dialog
  *     produces:
  *       - application/json
- */
-router.get('/dialog/questions', dialogController.findAllQuestions)
-
-router.post('/dialog/questions', jsonParser, dialogController.search)
-
-/**
- * @swagger
- *
- * /api/v1/dialog/answer/{id}:
- *   get:
- *     tags:
- *       - v1
- *     produces:
- *       - application/json
+ *     summary: Get answer by id
+ *     description: Get answer by id
  *     parameters:
  *     - name: id
  *       in: path
- *       description: Identifiant du dialogue.
+ *       description: ID of the dialog
  *       required: true
  *       schema:
  *         type: number
@@ -43,8 +40,50 @@ router.post('/dialog/questions', jsonParser, dialogController.search)
  *       '200':
  *         description: A successful response
  *       '404':
- *         description: Dialogue non trouvé
+ *         description: Dialog not found
  */
-router.get('/dialog/answer/:id', dialogController.findById)
+router.get('/dialog/:id', dialogController.findById)
+
+/**
+ * @swagger
+ *
+ * /dialog:
+ *   post:
+ *     tags:
+ *     - Dialog
+ *     produces:
+ *       - application/json
+ *     summary: Post question
+ *     description: Post question
+ */
+router.get('/dialog/:id', dialogController.findById)
+
+/**
+ * @swagger
+ *
+ * /dialog/question:
+ *   get:
+ *     tags:
+ *     - Dialog
+ *     produces:
+ *       - application/json
+ *     summary: Get all questions
+ *     description: Get all questions
+ */
+router.get('/dialog/questions', dialogController.findAllQuestions)
+
+/**
+ * @swagger
+ *
+ * /dialog/question:
+ *   post:
+ *     tags:
+ *     - Dialog
+ *     produces:
+ *       - application/json
+ *     summary: Search questions
+ *     description: Search questions
+ */
+router.post('/dialog/questions', jsonParser, dialogController.search)
 
 module.exports = router

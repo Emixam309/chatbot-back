@@ -14,18 +14,17 @@ const options = {
     info: {
       title: 'Chat Bot API'
     },
+    servers: [{ url: '/api/v1' }]
   },
   apis: ['./routes/v1/*.js'], // files containing annotations as above
 };
 const swaggerSpec = swaggerJsdoc(options);
 
 app.use('/api/v1', require('./routes/v1'))
-app.use('/api/v2', require('./routes/v2'))
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('*', (req, res) => {
-  // res.status(404).json({message: 'Not found'}) bonne pratique
-  res.sendFile(__dirname + '/view/404.html')
+  res.status(404).json({message: 'Not found'})
 })
 mongoose.connect(process.env.MONGO)
   .then(() => {console.log('Connected to database!')})
