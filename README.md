@@ -1,5 +1,6 @@
-# chatbot-backend
+# chatbot-backend 
 
+## Documentation
 
 ### Version 1
 
@@ -17,7 +18,7 @@
 
 - `/dialog/answer/:id` : Méthode GET
 
-    > Retourne le dialogue correspondant à l'id donné.
+    > Retourne le dialogue correspondant à l'identifiant donné.
     ```json
     {
       "id": number,
