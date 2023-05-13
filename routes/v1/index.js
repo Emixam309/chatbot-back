@@ -70,7 +70,7 @@ router.get('/dialog/:id', dialogController.findById)
  *     summary: Get all questions
  *     description: Get all questions
  */
-router.get('/dialog/questions', dialogController.findAllQuestions)
+router.get('/dialogs/questions', dialogController.findAllQuestions)
 
 /**
  * @swagger
@@ -84,6 +84,6 @@ router.get('/dialog/questions', dialogController.findAllQuestions)
  *     summary: Search questions
  *     description: Search questions
  */
-router.post('/dialog/questions', jsonParser, dialogController.search)
+router.post('/dialogs/questions', jsonParser, dialogController.search)
 
 module.exports = router
