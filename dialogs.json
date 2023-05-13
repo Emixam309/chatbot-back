@@ -11,7 +11,17 @@
   },
   {
     "id": 2,
-    "question": "Quel est ton nom ?",
+    "question": "Allo Bassem ?",
     "response": "Ouais c'est Greg."
+  },
+  {
+    "id": 3,
+    "question": "Quel est ton âge ?",
+    "response": "J'ai 46 ans."
+  },
+  {
+    "id": 4,
+    "question": "Allo ?",
+    "response": "Oui c'est le fils de Greg."
   }
 ]
