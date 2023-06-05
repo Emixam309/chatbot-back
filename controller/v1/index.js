@@ -1,20 +1,27 @@
-const dialogs = require("../../dialogs.json");
+const Dialog = require('../../mongodb/dialog')
 
 const dialogController = {
   home: (req, res) => {
     res.send('Hello World!')
   },
-  findAllQuestions: (req, res) => {
-    const questions = dialogs.map(({id, question}) => ({id, question}))
+  findAllQuestions: async (req, res) => {
+    const dialogs = await Dialog.find()
+    console.log(dialogs)
+    const questions = dialogs.map(({_id, question}) => ({_id, question}))
     res.json(questions)
   },
-  findById: (req, res) => {
-    const dialog = dialogs.find(dialog => dialog.id === parseInt(req.params.id))
-    if (!dialog) return res.status(404).send('Dialog not found')
+  findById: async (req, res) => {
+    try {
+    const dialog = await Dialog.findById(req.params.id)
     res.json(dialog)
+    } catch (error) {
+      console.log(error)
+      return res.status(404).send({message: 'Dialog not found'})
+    }
   },
-  search: (req, res) => {
+  search: async (req, res) => {
     const question = normalizeString(req.body.question)
+    const dialogs = await Dialog.find()
     const dialogsFiltered = dialogs.filter(dialog => normalizeString(dialog.question).includes(question))
     res.json(dialogsFiltered)
   }
