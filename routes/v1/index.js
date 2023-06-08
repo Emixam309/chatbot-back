@@ -8,15 +8,19 @@ const jsonParser = bodyParser.json()
 /**
  * @swagger
  *
- * /:
+ * /dialog:
  *   get:
- *     summary: Send Hello World
- *     description: Send Hello World
+ *     tags:
+ *     - Dialog
+ *     produces:
+ *       - application/json
+ *     summary: Get all dialogs
+ *     description: Get all dialogs
  *     responses:
  *       '200':
  *         description: A successful response
  */
-router.get('/', dialogController.home)
+router.get('/dialog', dialogController.findAll)
 
 /**
  * @swagger
@@ -53,10 +57,47 @@ router.get('/dialog/:id', dialogController.findById)
  *     - Dialog
  *     produces:
  *       - application/json
- *     summary: Post question
- *     description: Post question
+ *     summary: Create dialog
+ *     description: Create dialog
+ *     responses:
+ *       '200':
+ *         description: Creation success
  */
-router.get('/dialog/:id', dialogController.findById)
+router.post('/dialog', jsonParser, dialogController.create)
+
+/**
+ * @swagger
+ *
+ * /dialog:
+ *   patch:
+ *     tags:
+ *     - Dialog
+ *     produces:
+ *       - application/json
+ *     summary: Patch dialog
+ *     description: Patch dialog
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+router.patch('/dialog', jsonParser, dialogController.edit)
+
+/**
+ * @swagger
+ *
+ * /dialog:
+ *   delete:
+ *     tags:
+ *     - Dialog
+ *     produces:
+ *       - application/json
+ *     summary: Delete dialog
+ *     description: Delete dialog
+ *     responses:
+ *       '200':
+ *         description: A successful response
+ */
+router.delete('/dialog/:id', dialogController.delete)
 
 /**
  * @swagger
